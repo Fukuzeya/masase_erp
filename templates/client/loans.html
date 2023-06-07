@@ -1,0 +1,72 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Hover table card start -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Applied Loans</h5>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                            <li><i class="fa fa-minus minimize-card"></i></li>
+                            <li><i class="fa fa-refresh reload-card"></i></li>
+                            <li><i class="fa fa-trash close-card"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="background-color:#5A72FE;">
+                                    <th></th>
+                                    <th style="color:white;">Loan Type</th>
+                                    <th style="color:white;">Loan Purpose</th>
+                                    <th style="color:white;">Disbursement Option</th>
+                                    <th style="color:white;">Loan Amount</th>
+                                    <th style="color:white;">Monthly Installment</th>
+                                    <th style="color:white;">Loan Tenure</th>
+                                    <th style="color:white;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for loan in loans %}
+                                    <tr>
+                                        <th scope="row">{{forloop.counter}}</th>
+                                        <td>{{loan.loan_type}}</td>
+                                        <td>{{loan.loan_purpose}}</td>
+                                        <td>{{loan.disbursement_option}}</td>
+                                        <td>{{loan.loan_amount}}</td>
+                                        <td>{{loan.monthly_installment}}</td>
+                                        <td>{{loan.loan_tenure}}</td>
+                                        {% if loan.status %}
+                                        <td><label class="label label-success">Approved</label></td>
+                                        {% else %}
+                                        <td><label class="label label-danger">Waiting...</label></td>
+                                        {% endif %}
+                                    </tr>
+                                {% empty %}
+                                    <p>No loan applied yet.</p>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Hover table card end -->
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

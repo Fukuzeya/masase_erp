@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Twilight Tech | Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="keywords" content="elearning school" />
+    <meta name="author" content="samstech" />
+    <!-- Favicon icon -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{% static 'assets/pages/waves/css/waves.min.css' %}" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap/css/bootstrap.min.css' %}">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{% static 'assets/pages/waves/css/waves.min.css' %}" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/icon/themify-icons/themify-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/icon/icofont/css/icofont.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/pages/notification/notification.css' %}">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css/css/animate.css' %}">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome-n.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.mCustomScrollbar.css' %}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+</head>
+
+<body themebg-pattern="theme1">
+  <!-- Pre-loader start -->
+  <div class="theme-loader">
+      <div class="loader-track">
+          <div class="preloader-wrapper">
+              <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+              <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+
+              <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+
+              <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Pre-loader end -->
+  <section class="login-block">
+        <!-- Container-fluid starts -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="md-float-material form-material" method="post">{% csrf_token %}
+                        <div class="text-center">
+                            {% comment %} <img src="assets/images/logo.png" alt="logo.png"> {% endcomment %}
+                            <h2 style="color:white;">Twilight Technologies</h2>
+                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Sign up</h3>
+                                    </div>
+                                </div>
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% if field.errors %}
+                                            <div style="text-align:center;" data-from="top" data-icon="fa fa-comments" data-align="center" class="alert alert-danger" role="alert">
+                                                {{ field.errors|striptags }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                <div class="form-group form-primary">
+                                    {{form.username}}
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Choose Username</label>
+                                </div>
+                                <div class="form-group form-primary">
+                                    {{form.first_name}}
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Your EC Number</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-primary">
+                                            {{form.password1}}
+                                            <span class="form-bar"></span>
+                                            <label class="float-label">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-primary">
+                                            {{form.password2}}
+                                            <span class="form-bar"></span>
+                                            <label class="float-label">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-md-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">Send me the <a href="#!">Twilight Tech News</a> weekly.</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now</button>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                     
+                                        <p class="text-inverse text-left"><a href="{% url 'accounts:login' %}"><b>Sign In instead</b></a></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        {% comment %} <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png"> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+<!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- waves js --> <script type="text/javascript" src="{% static 'assets/pages/notification/notification.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/pages/waves/js/waves.min.js' %}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+    <!-- menu js -->
+    <script type="text/javascript" src="{% static 'assets/js/pcoded.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vertical/vertical-layout.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'assets/js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/common-pages.js' %}"></script>
+</body>
+
+</html>

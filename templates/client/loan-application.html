@@ -1,0 +1,122 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+{% comment %} <div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">New Student Registration</h5>
+                    <p class="m-b-0">Student Contact Information</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="index.html"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">Student</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">registration</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" style="text-align:center;">
+                                <h5 style="text-align:center;">Loan Application Form for <img class="img-80 img-radius" src="{{product.image.url}}" alt=""></h5>
+                                <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                            </div>
+                            {% if form.errors %}
+                                <p style="text-align:center;" class="alert alert-warning">Please correct the following errors:</p>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        <div style="text-align:center;" data-from="top" data-icon="fa fa-comments" data-align="center" class="alert alert-danger" role="alert">
+                                            {{ field.label }}: {{ field.errors|striptags }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                    {% if message.tags == 'success' %}
+                                    <div class="alert alert-success" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="card-block">
+                                <form method="post">{% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Type:</label>
+                                            {{form.loan_type }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Purpose:</label>
+                                            <input type="text" class="form-control" readonly value="{{product.name}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Disbursement Option:</label>
+                                            {{form.disbursement_option}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Existing Loan Amount:</label>
+                                            {{form.existing_loan_amount}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Amount:</label>
+                                            <input type="number" class="form-control" readonly value="{{product.price}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Tenure:</label>
+                                            {{form.loan_tenure}}
+                                        </div>
+                                    </div>
+                                    {% if messages %}
+                                    <a href="{% url 'student:student_update' %}" class="btn waves-effect waves-light btn-secondary"><i class="icofont icofont-check-circled"></i>Back</a>
+                                    <a href="{% url 'student:student_next_of_kin' %}" class="btn waves-effect waves-light btn-primary"><i class="icofont icofont-check-circled"></i>Next</a>
+                                    {% else %}
+                                    <button type="submit" class="btn waves-effect waves-light btn-success"><i class="icofont icofont-check-circled"></i>Submit</button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

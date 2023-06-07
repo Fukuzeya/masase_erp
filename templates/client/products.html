@@ -1,0 +1,64 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Hover table card start -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Available Products</h5>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                            <li><i class="fa fa-minus minimize-card"></i></li>
+                            <li><i class="fa fa-refresh reload-card"></i></li>
+                            <li><i class="fa fa-trash close-card"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="background-color:#5A72FE;">
+                                    <th></th>
+                                    <th style="color:white;">Image</th>
+                                    <th style="color:white;">Product Name</th>
+                                    <th style="color:white;">Price</th>
+                                    <th style="color:white;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <th scope="row"><a href="{{product.image.url}}"><img class="img-80 img-radius" src="{{product.image.url}}" alt=""></a></th>
+                                    <td><a href="#" class="text-primary fw-bold">{{product.name}}</a></td>
+                                    <td>${{product.price}}</td>
+                                    <td class="fw-bold">
+                                        <a href="{% url 'applicant:loan_application' product.id %}" class="btn waves-effect waves-light btn-primary"><i class="icofont icofont-check-circled"></i>Select</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <p>No products available</p>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Hover table card end -->
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

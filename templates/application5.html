@@ -1,0 +1,93 @@
+{% extends './application-base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-5">Bank Details</h5>
+                    <p class="m-b-0"></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">Application</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">Stage 5</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            {% comment %} <div class="card-header" style="text-align:center;">
+                                <h5 style="text-align:center;">Payment Information</h5>
+                                <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                            </div> {% endcomment %}
+                            {% if form.errors %}
+                                <p style="text-align:center;" class="alert alert-warning">Please correct the following errors:</p>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        <div style="text-align:center;" data-from="top" data-icon="fa fa-comments" data-align="center" class="alert alert-danger" role="alert">
+                                            {{ field.label }}: {{ field.errors|striptags }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                    {% if message.tags == 'success' %}
+                                    <div class="alert alert-success" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="card-block">
+                                <form method="post">{% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="float-label">Bank Name:</label>
+                                            {{form.bank_name}}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="float-label">Branch Name:</label>
+                                            {{form.branch_name}}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="float-label">Account Number:</label>
+                                            {{form.account_no}}
+                                        </div>
+                                        
+                                    </div>
+                                    <button type="submit" class="btn waves-effect waves-light btn-success"><i class="icofont icofont-check-circled"></i>Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}

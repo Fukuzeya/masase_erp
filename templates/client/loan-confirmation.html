@@ -1,0 +1,115 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" style="text-align:center;">
+                                <h5 style="text-align:center;">Please Confirm Loan Details Below</h5>
+                                <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                            </div>
+                            {% if form.errors %}
+                                <p style="text-align:center;" class="alert alert-warning">Please correct the following errors:</p>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        <div style="text-align:center;" data-from="top" data-icon="fa fa-comments" data-align="center" class="alert alert-danger" role="alert">
+                                            {{ field.label }}: {{ field.errors|striptags }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                    {% if message.tags == 'success' %}
+                                    <div class="alert alert-success" style="margin-top:10px;text-align:center;">{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="card-block">
+                                <form method="post" action="{% url 'applicant:confirm_loan' %}" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label"><b>Loan Type:</b></label>
+                                            <input type="text" class="form-control" readonly value="{{loan.loan_type}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label"><b>Loan Purpose:</b></label>
+                                            <input type="text" class="form-control" readonly value="{{loan.loan_purpose}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Disbursement Option:</label>
+                                            <input type="text" class="form-control" readonly value="{{loan.disbursement_option}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Existing Loan Amount:</label>
+                                            <input type="text" class="form-control" readonly value="{{loan.existing_loan_amount}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Amount:</label>
+                                            <input type="text" class="form-control" readonly value="${{loan.loan_amount}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Monthly Installment:</label>
+                                            <input type="text" class="form-control" readonly value="${{loan.monthly_installment}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="float-label">Loan Tenure:</label>
+                                            <input type="text" class="form-control" readonly value="{{loan.loan_tenure}}"/>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label style="color:red;" class="float-label"><b>Upload Current Payslip</b></label>
+                                            <input type="file" name="payslip"  class="form-control" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label style="color:red;" class="float-label"><b>Upload National ID</b></label>
+                                            <input type="file" name="national_id"  class="form-control" required/>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn waves-effect waves-light btn-success"><i class="icofont icofont-check-circled"></i>Confirm Application</button>
+                                    <button type="submit" class="btn waves-effect waves-light btn-danger"><i class="icofont icofont-check-circled"></i>Cancel Application</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+{% endblock body %}
