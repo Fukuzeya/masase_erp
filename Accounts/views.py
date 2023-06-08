@@ -47,10 +47,8 @@ def profile_check(request):
         return redirect("applicant:client_profile")
     elif is_agent(request.user):
         return redirect("agent:agent_profile")
-    # elif is_admin(request.user):
-    #     return redirect("accounts:admin_profile")
-    # else:
-    #     return redirect("accounts:login")
+    else:
+        return redirect('admin:index')
     
 # @login_required
 # def student_dashboard(request):

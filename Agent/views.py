@@ -78,6 +78,7 @@ def application_process_four(request):
         form = ApplicationForm4()
     return render(request,'agent/application4.html',{'form':form})
 
+@login_required
 def application_process_five(request):
     national_id = request.user.first_name
     agent = Agent.objects.get(national_id = national_id)
@@ -99,3 +100,9 @@ def application_process_five(request):
     return render(request,'agent/application5.html',{'form':form})
 
 
+def get_my_clients(request):
+    if not is_agent(request.user):return redirect("accounts:login")
+    national_id = request.user.first_name
+    agent = Agent.objects.get(national_id = national_id)
+    clients = agent.agent_clients.all()
+    return render(request,'agent/clients.html',{'clients':clients})
